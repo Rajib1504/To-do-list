@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>To-Do List</title>
+  </head>
+  <body class="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <h1 class="text-2xl font-bold mb-4">To-Do List</h1>
+
+    <form id="todoForm" class="flex space-x-2 mb-4">
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter a task"
+        class="p-2 border border-gray-300 rounded w-80"
+        required
+      />
+      <button
+        id="btn"
+        type="submit"
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Add Task
+      </button>
+    </form>
+
+    <ul id="taskList" class="space-y-2 w-full max-w-md"></ul>
+
+    <script>
+      document.getElementById("ki re");
+      document.getElementById("btn").addEventListener("click", (event) => {
+        event.preventDefault();
+        const input = document.getElementById("taskInput").value;
+
+        const element = document.createElement("li");
+        element.innerHTML = `
+         <div class="flex p-1 justify-between item-center border-2 border-gray-200 rounded-lg">
+       <p>${input}</p>
+       <button id="delete" value="deleteMe" class = "bg-red-500 text-white px-2 rounded">delete</button>
+       </div>
+      `;
+        const tasklist = document.getElementById("taskList");
+        tasklist.appendChild(element);
+      });
+      document.getElementById("taskList").addEventListener("click", (event) => {
+        const value = event.target.value;
+        // console.log(value);
+        value === "deleteMe" &&
+          event.target.parentNode.parentNode.parentNode.removeChild(
+            event.target.parentNode.parentNode
+          );
+      });
+    </script>
+  </body>
+</html>
